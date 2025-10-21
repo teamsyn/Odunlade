@@ -1,40 +1,204 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Baba Odunlade – Photo Speaks</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 40px;
-    }
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Baba Odunlade – Photo Speaks</title>  
+  <style>  
+    * {  
+      margin: 0;  
+      padding: 0;  
+      box-sizing: border-box;  
+      font-family: 'Segoe UI', sans-serif;  
+    }  body {  
+  background: #fdf8ef;  
+  color: #333;  
+  overflow-x: hidden;  
+}  
 
-    .photo-card {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
-      padding-bottom: 15px;
-      transition: transform 0.3s ease;
-    }
+/* === MENU === */  
+.menu-toggle {  
+  font-size: 30px;  
+  position: fixed;  
+  top: 20px;  
+  left: 25px;  
+  color: white;  
+  z-index: 20;  
+  background: rgba(0, 0, 0, 0.5);  
+  padding: 10px 14px;  
+  border-radius: 8px;  
+  cursor: pointer;  
+  backdrop-filter: blur(6px);  
+  transition: all 0.3s ease;  
+}  
 
-    .photo-card:hover {
-      transform: scale(1.03);
-    }
+.menu-toggle:hover {  
+  background: rgba(255, 215, 0, 0.8);  
+  color: #000;  
+}  
 
-    .photo-card img {
-      width: 100%;
-      border-bottom: 2px solid #f5e0a1;
-    }
+nav {  
+  position: fixed;  
+  top: 0;  
+  left: -100%;  
+  width: 100%;  
+  height: 100vh;  
+  background: linear-gradient(135deg, #caa84d, #e4c77b);  
+  display: flex;  
+  flex-direction: column;  
+  justify-content: center;  
+  align-items: center;  
+  gap: 25px;  
+  transition: left 0.5s ease;  
+  z-index: 15;  
+}  
 
-    .photo-card h3 {
-      margin: 15px 0 10px;
-      color: #a6862e;
+nav.show {  
+  left: 0;  
+}  
+
+nav a {  
+  font-size: 1.5rem;  
+  font-weight: 500;  
+  color: #fff;  
+  padding: 10px 20px;  
+  border-radius: 8px;  
+  transition: all 0.3s ease;  
+}  
+
+nav a:hover {  
+  background: rgba(255,255,255,0.2);  
+  transform: scale(1.1);  
+}  
+
+/* === HERO === */  
+.hero {  
+  height: 60vh;  
+  background: linear-gradient(135deg, rgba(186,146,45,0.7), rgba(240,210,110,0.8)),  
+              url('hero.jpg') center/cover no-repeat;  
+  display: flex;  
+  flex-direction: column;  
+  justify-content: center;  
+  align-items: center;  
+  text-align: center;  
+  color: white;  
+}  
+
+.hero h1 {  
+  font-size: 2.6rem;  
+  color: #ffe58f;  
+  margin-bottom: 10px;  
+  text-shadow: 0 4px 10px rgba(0,0,0,0.4);  
+  animation: fadeInDown 1s ease forwards;  
+}  
+
+.hero h2 {  
+  font-size: 1.3rem;  
+  color: #fffbe2;  
+  animation: fadeInDown 1.4s ease forwards;  
+}  
+
+/* === GALLERY === */  
+.gallery {  
+  display: grid;  
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  
+  gap: 20px;  
+  padding: 50px 40px;  
+  animation: fadeInUp 1s ease forwards;  
+}  
+
+.photo-card {  
+  background: #fff;  
+  border-radius: 15px;  
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);  
+  overflow: hidden;  
+  text-align: center;  
+  padding-bottom: 15px;  
+  transition: transform 0.3s ease;  
+}  
+
+.photo-card:hover {  
+  transform: scale(1.03);  
+}  
+
+.photo-card img {  
+  width: 100%;  
+  border-bottom: 2px solid #f5e0a1;  
+}  
+
+.photo-card h3 {  
+  margin: 15px 0 10px;  
+  color: #a6862e;  
+  font-size: 1.1rem;  
+}  
+
+.view-btn {  
+  background: #a6862e;  
+  color: white;  
+  text-decoration: none;  
+  padding: 8px 20px;  
+  border-radius: 10px;  
+  transition: 0.3s;  
+}  
+
+.view-btn:hover {  
+  background: #c8a64b;  
+}  
+
+/* === FOOTER === */  
+footer {  
+  background: #b8912d;  
+  color: white;  
+  text-align: center;  
+  padding: 25px;  
+  font-size: 1rem;  
+  margin-top: 50px;  
+}  
+
+/* === ANIMATIONS === */  
+@keyframes fadeInDown {  
+  from { opacity: 0; transform: translateY(-30px); }  
+  to { opacity: 1; transform: translateY(0); }  
+}  
+
+@keyframes fadeInUp {  
+  from { opacity: 0; transform: translateY(30px); }  
+  to { opacity: 1; transform: translateY(0); }  
+}
+
+  </style>  
+</head>  
+<body>    <!-- === MENU === -->    <div class="menu-toggle" onclick="toggleMenu()">☰</div>  
+  <nav id="menu">  
+    <a href="index.html">🏠 Home</a>  
+    <a href="program.html">📜 Program</a>  
+    <a href="photos.html">📸 Photo Speaks</a>  
+    <a href="tributes.html">💐 Tributes</a>  
+    <a href="about.html">👤 Biography</a>  
+    <a href="contact.html">📞 Contact</a>  
+  </nav>    <!-- === HERO === -->    <section class="hero">  
+    <h1>📸 Photo Speaks</h1>  
+    <h2>Memories of Chief Babatunde Odunlade</h2>  
+  </section>    <!-- === GALLERY === -->    <div class="gallery">  
+    <div class="photo-card">  
+      <img src="main1.jpg" alt="Early Life">  
+      <h3>Early Life ✨</h3>  
+      <a href="photo.html?group=1" class="view-btn">View More</a>  
+    </div>  <div class="photo-card">  
+  <img src="main2.jpg" alt="Family and Friends">  
+  <h3>Family and Friends</h3>  
+  <a href="photo.html?group=2" class="view-btn">View More</a>  
+</div>
+
+  </div>    <!-- === FOOTER === -->    <footer>  
+    <p>“To live in the hearts we leave behind is not to die.” 🕊️</p>  
+  </footer>    <script>  
+    function toggleMenu() {  
+      document.getElementById('menu').classList.toggle('show');  
+    }  
+  </script>  </body>  
+</html>      color: #a6862e;
       font-size: 1.1rem;
     }
 
