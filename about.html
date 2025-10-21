@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biography – Baba Odunlade</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #fdf8ef;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* === MENU === */
+    .menu-toggle {
+      font-size: 30px;
+      position: fixed;
+      top: 20px;
+      left: 25px;
+      color: white;
+      z-index: 20;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(255, 215, 0, 0.8);
+      color: #000;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, #caa84d, #e4c77b);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      transition: left 0.5s ease;
+      z-index: 15;
+    }
+
+    nav.show {
+      left: 0;
+    }
+
+    nav a {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.1);
+    }
+
+    /* === HERO === */
+    .hero {
+      height: 50vh;
+      background: linear-gradient(135deg, rgba(186,146,45,0.7), rgba(240,210,110,0.8)),
+                  url('hero.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      color: #ffe58f;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .hero h2 {
+      font-size: 1.2rem;
+      color: #fffbe2;
+      font-weight: 400;
+      margin-top: 5px;
+    }
+
+    /* === BIOGRAPHY === */
+    .biography {
+      max-width: 950px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 15px;
+      padding: 50px 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      white-space: pre-line;
+    }
+
+    .biography h3 {
+      color: #a6862e;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    footer {
+      background: #b8912d;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 1rem;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === MENU === -->
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="menu">
+    <a href="index.html">🏠 Home</a>
+    <a href="view-program.html">📜 Program</a>
+    <a href="photos.html">📸 Photo Speaks</a>
+    <a href="tributes.html">💐 Tributes</a>
+    <a href="about.html">👤 Biography</a>
+    <a href="contact.html">📞 Contact</a>
+  </nav>
+
+  <!-- === HERO === -->
+  <section class="hero">
+    <h1>👤 Biography</h1>
+    <h2>The Life and Legacy of Chief Babatunde Odunlade</h2>
+  </section>
+
+  <!-- === BIOGRAPHY CONTENT === -->
+  <section class="biography" id="bio-content">
+    <h3>Chief Babatunde Odunlade</h3>
+  </section>
+
+  <!-- === FOOTER === -->
+  <footer>
+    <p>“A man’s worth lives on through his deeds and the lives he touched.” 🕊️</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('show');
+    }
+
+    // === BIOGRAPHY TEXT ===
+    const bioText = `
+Chief Babatunde Odunlade was born into a family of deep tradition and strong values in Ibadan, Nigeria. 
+From a young age, his curiosity and discipline marked him out as a natural leader — one who blended wisdom with compassion.
+
+He pursued education with focus and later built a distinguished career marked by integrity, creativity, and service to his people. 
+Beyond his professional excellence, he was known for his laughter, his stories, and his quiet strength that inspired many.
+
+In his community, Baba Odunlade was more than a leader — he was a mentor, a bridge-builder, and a voice of reason in challenging times. 
+His generosity reached far beyond his family, touching countless lives through acts of kindness and mentorship.
+
+He is survived by his beloved wife, children, grandchildren, and many whose paths were shaped by his love and example.
+His life reminds us that greatness is not in what we gather, but in what we give.
+    `;
+
+    document.getElementById("bio-content").innerHTML += `<p>${bioText}</p>`;
+  </script>
+
+</body>
+</html>
