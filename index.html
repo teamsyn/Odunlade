@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="menu" class="hidden">
+    <a href="index.html">🏠 Home</a>
+    <a href="view-program.html">📜 Program</a>
+    <a href="photos.html">📸 Photo Speaks</a>
+    <a href="tributes.html">💐 Tributes</a>
+    <a href="about.html">👤 Biography</a>
+    <a href="contact.html">📞 Contact</a>
+  </nav>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celebration of Life - Baba Odunlade</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* === HERO BACKGROUND IMAGE === */
+    .hero {
+      background: url('hero.jpg') center/cover no-repeat;
+      color: white;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.6);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Add an overlay to make text clearer */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+    }
+
+    .hero h1, .hero h2, .hero p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero h2 {
+      font-size: 1.8rem;
+      color: #ffd700;
+    }
+
+    .hero p {
+      max-width: 600px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    /* Smooth scroll fade-in for other sections */
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .menu-toggle {
+  font-size: 28px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 25px;
+  color: white;
+  z-index: 10;
+  background: rgba(0,0,0,0.5);
+  padding: 8px 14px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+nav {
+  position: fixed;
+  top: 60px;
+  left: 20px;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 9;
+}
+nav.hidden { display: none; }
+nav a {
+  color: #222;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 6px;
+}
+nav a:hover { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>🕊️ Celebration of Life</h1>
+    <h2>Chief Babatunde Odunlade</h2>
+    <p>We honor a life well lived — a legacy of love, faith, and excellence.</p>
+  </section>
+
+  <section class="program-section">
+    <h3>The Burial Program</h3>
+    <div class="program-card">
+      <img src="images/program-cover.jpg" alt="Program Cover">
+      <p>Download or view the detailed order of events for the homegoing ceremony.</p>
+      <div class="actions">
+        <a href="files/BabaOdunladeProgram.pdf" download>📥 Download Program</a>
+        <a href="view-program.html"> View Online</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="photos-preview">
+    <h3>Moments from the Event</h3>
+    <div class="preview-grid">
+      <img src="images/moment1.jpg" alt="">
+      <img src="images/moment2.jpg" alt="">
+      <img src="images/moment3.jpg" alt="">
+    </div>
+    <a href="photos.html" class="view-more">📸 View Full Gallery</a>
+  </section>
+
+  <footer>
+    <p>In loving memory of Chief Babatunde Odunlade (1956 – 2025)</p>
+  </footer>
+
+  <script>
+    // Reveal sections smoothly on scroll
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+    function toggleMenu() {
+  document.getElementById('menu').classList.toggle('hidden');
+}
+  </script>
+</body>
+</html>
