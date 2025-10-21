@@ -4,16 +4,107 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View Photo – Baba Odunlade</title>
-  <link rel="stylesheet" href="style.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #fdf8ef;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* === MENU === */
+    .menu-toggle {
+      font-size: 30px;
+      position: fixed;
+      top: 20px;
+      left: 25px;
+      color: white;
+      z-index: 20;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(255, 215, 0, 0.8);
+      color: #000;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, #caa84d, #e4c77b);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      transition: left 0.5s ease;
+      z-index: 15;
+    }
+
+    nav.show {
+      left: 0;
+    }
+
+    nav a {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.1);
+    }
+
+    /* === HERO === */
+    .hero {
+      height: 60vh;
+      background: linear-gradient(135deg, rgba(186,146,45,0.7), rgba(240,210,110,0.8)),
+                  url('hero.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      color: #ffe58f;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    /* === PHOTO VIEW === */
     .photo-view {
       text-align: center;
-      padding: 30px 20px;
+      padding: 40px 20px;
+      animation: fadeInUp 1s ease forwards;
     }
 
     .photo-view h2 {
       color: #a6862e;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      font-size: 1.5rem;
     }
 
     .main-photo {
@@ -22,6 +113,7 @@
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.15);
       margin-bottom: 25px;
+      border: 2px solid #f5e0a1;
     }
 
     .side-photos {
@@ -35,6 +127,136 @@
       width: 45%;
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border: 1px solid #f5e0a1;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 25px;
+      background: #a6862e;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #c8a64b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 10px;
+      color: #fff;
+      font-size: 0.95rem;
+      background: #b8912d;
+      border-top: 1px solid #e0cf98;
+    }
+
+    /* === PROMPT === */
+    .prompt {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid #e0cf98;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      color: #a6862e;
+      animation: fadeOut 6s ease forwards 3s;
+      z-index: 25;
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeOut {
+      0%, 80% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === PROMPT === -->
+  <div class="prompt">Exploring memories with Baba Odunlade 🕊️</div>
+
+  <!-- === MENU === -->
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="menu">
+    <a href="index.html">🏠 Home</a>
+    <a href="program.html">📜 Program</a>
+    <a href="photos.html">📸 Photo Speaks</a>
+    <a href="tributes.html">💐 Tributes</a>
+    <a href="about.html">👤 Biography</a>
+    <a href="contact.html">📞 Contact</a>
+  </nav>
+
+  <!-- === HERO === -->
+  <section class="hero">
+    <h1>📸 Photo Speaks</h1>
+  </section>
+
+  <!-- === PHOTO VIEW === -->
+  <div class="photo-view" id="photo-view"></div>
+
+  <!-- === FOOTER === -->
+  <footer>
+    <p>In loving memory of Chief Babatunde Odunlade 🕊️</p>
+  </footer>
+
+  <script>
+    // Toggle menu
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('show');
+    }
+
+    // Load photos dynamically
+    const params = new URLSearchParams(window.location.search);
+    const group = params.get('group');
+    const viewDiv = document.getElementById('photo-view');
+
+    const photos = {
+      1: {
+        title: "Day 1 – Service of Songs",
+        main: "images/main1.jpg",
+        sides: ["images/side1a.jpg", "images/side1b.jpg"]
+      },
+      2: {
+        title: "Day 2 – Burial & Thanksgiving",
+        main: "images/main2.jpg",
+        sides: ["images/side2a.jpg", "images/side2b.jpg"]
+      }
+    };
+
+    if (photos[group]) {
+      const { title, main, sides } = photos[group];
+      viewDiv.innerHTML = `
+        <h2>${title}</h2>
+        <img src="${main}" class="main-photo" alt="${title}">
+        <div class="side-photos">
+          <img src="${sides[0]}" alt="">
+          <img src="${sides[1]}" alt="">
+        </div>
+        <a href="photos.html" class="back-btn">⬅ Back to Gallery</a>
+      `;
+    } else {
+      viewDiv.innerHTML = "<p>Photo group not found.</p>";
+    }
+  </script>
+</body>
+</html>      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
 
     .back-btn {
